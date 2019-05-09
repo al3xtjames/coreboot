@@ -13,5 +13,12 @@
 ## GNU General Public License for more details.
 ##
 
-romstage-y += gpio.c
-ramstage-$(CONFIG_MAINBOARD_USE_LIBGFXINIT) += gma-mainboard.ads
+romstage-y += variants/$(VARIANT_DIR)/gpio.c
+romstage-y += variants/$(VARIANT_DIR)/romstage.c
+
+ramstage-y += variants/$(VARIANT_DIR)/mainboard.c
+ramstage-$(CONFIG_MAINBOARD_USE_LIBGFXINIT) += variants/$(VARIANT_DIR)/gma-mainboard.ads
+
+subdirs-y += variants/$(VARIANT_DIR)
+
+CPPFLAGS_common += -I$(src)/mainboard/$(MAINBOARDDIR)/variants/$(VARIANT_DIR)/include

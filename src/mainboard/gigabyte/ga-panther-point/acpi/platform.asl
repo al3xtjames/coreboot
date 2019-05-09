@@ -1,8 +1,7 @@
 /*
  * This file is part of the coreboot project.
  *
- * Copyright (C) 2011 The Chromium OS Authors. All rights reserved.
- * Copyright (C) 2014 Vladimir Serbinenko
+ * Copyright (C) 2012 The Chromium OS Authors. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,13 +13,17 @@
  * GNU General Public License for more details.
  */
 
-#ifndef GAB75MD3H_THERMAL_H
-#define GAB75MD3H_THERMAL_H
+/* The _PTS method (Prepare To Sleep) is called before the OS is
+ * entering a sleep state. The sleep state number is passed in Arg0
+ */
 
-	/* Temperature which OS will shutdown at */
-	#define CRITICAL_TEMPERATURE	100
+Method (_PTS, 1)
+{
+}
 
-	/* Temperature which OS will throttle CPU */
-	#define PASSIVE_TEMPERATURE	90
+/* The _WAK method is called on system wakeup */
 
-#endif
+Method (_WAK, 1)
+{
+	Return (Package () {0,0})
+}

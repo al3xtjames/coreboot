@@ -1,0 +1,71 @@
+##
+## This file is part of the coreboot project.
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; version 2 of the License.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+
+config BOARD_GIGABYTE_BASEBOARD_GA_PANTHER_POINT
+	def_bool n
+	select ARCH_X86
+	select NORTHBRIDGE_INTEL_IVYBRIDGE
+	select USE_NATIVE_RAMINIT
+	select SOUTHBRIDGE_INTEL_C216
+	select SUPERIO_ITE_IT8728F
+	select BOARD_ROMSIZE_KB_8192
+	select HAVE_ACPI_TABLES
+	select HAVE_OPTION_TABLE
+	select HAVE_CMOS_DEFAULT
+	select HAVE_ACPI_RESUME
+	select INTEL_INT15
+	select SERIRQ_CONTINUOUS_MODE
+	select MAINBOARD_HAS_LIBGFXINIT
+	select MAINBOARD_HAS_LPC_TPM if BOARD_GIGABYTE_GA_B75M_D3H
+
+if BOARD_GIGABYTE_BASEBOARD_GA_PANTHER_POINT
+
+config MAINBOARD_DIR
+	string
+	default "gigabyte/ga-panther-point"
+
+config VARIANT_DIR
+	string
+	default "ga-b75m-d3h" if BOARD_GIGABYTE_GA_B75M_D3H
+	default "ga-b75m-d3v" if BOARD_GIGABYTE_GA_B75M_D3V
+
+config MAINBOARD_PART_NUMBER
+	string
+	default "GA-B75M-D3H" if BOARD_GIGABYTE_GA_B75M_D3H
+	default "GA-B75M-D3V" if BOARD_GIGABYTE_GA_B75M_D3V
+
+config DEVICETREE
+	string
+	default "variants/$(CONFIG_VARIANT_DIR)/devicetree.cb"
+
+config MAINBOARD_PCI_SUBSYSTEM_DEVICE_ID
+	hex
+	default 0x5001
+
+config MAINBOARD_PCI_SUBSYSTEM_VENDOR_ID
+	hex
+	default 0x1458
+
+config MAX_CPUS
+	int
+	default 8
+
+config VGA_BIOS_ID
+	string
+	default "8086,0162"
+
+config VGA_BIOS_FILE
+	string
+	default "pci8086,0162.rom"
+
+endif # BOARD_GIGABYTE_BASEBOARD_GA_PANTHER_POINT
