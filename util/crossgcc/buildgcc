@@ -716,7 +716,7 @@ build_BINUTILS() {
 		--enable-interwork --enable-multilib \
 		--enable-plugins --enable-multilibs \
 		CFLAGS="$HOSTCFLAGS" \
-		CXXFLAGS="$HOSTCFLAGS" \
+		CXXFLAGS="$HOSTCFLAGS -std=c++11" \
 		|| touch .failed
 	# shellcheck disable=SC2086
 	$MAKE $JOBS || touch .failed
